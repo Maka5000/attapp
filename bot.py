@@ -31,7 +31,7 @@ def start(message):
     duck = 'https://github.com/Maka5000/Akeno/blob/master/img/sd/DDuck.gif'
     suicide = [pistol, pistolyou, emoji, uganda
                , jaba, duck]
-    bot.send_photo(message.chat.id, random.choice(suicide))
+    bot.send_message(message.chat.id, random.choice(suicide))
 
 
 #ФУНКЦИЯ ЛИНЕЙНОЙ КЛАВИАТУРЫ ФУНКЦИЯ ЛИНЕЙНОЙ КЛАВИАТУРЫ ФУНКЦИЯ ЛИНЕЙНОЙ КЛАВИАТУРЫ ФУНКЦИЯ ЛИНЕЙНОЙ КЛАВИАТУРЫ
@@ -446,9 +446,9 @@ def inline(call):
                               parse_mode='Markdown',
                               reply_markup=keyboard)
     if call.data == 'Пары':
-        bot.send_photo(call.message.chat.id, open('Akeno/img/Lessons.jpeg', 'rb'))
+        bot.send_photo(call.message.chat.id, open('img/Lessons.jpeg', 'rb'))
     if call.data == 'Экзамен':
-        bot.send_photo(call.message.chat.id, open('Akeno/img/Exams.jpg', 'rb'))
+        bot.send_photo(call.message.chat.id, open('img/sd/DDuck.gif', 'rb'))
 
 if __name__ == '__main__':
     bot.polling(none_stop=True, interval=0)
