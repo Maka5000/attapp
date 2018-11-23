@@ -23,12 +23,12 @@ def find_at(msg):
 
 @bot.message_handler(commands = ['suicide'])
 def start(message):
-    pistol = bot.send_message(message.chat.id, 'https://github.com/Maka5000/Akeno/blob/master/img/sd/Pistol.jpg')
-    pistolyou = bot.send_message(message.chat.id, 'https://github.com/Maka5000/Akeno/blob/master/img/sd/Pistolyou.jpg')
-    emoji = bot.send_message(message.chat.id, 'https://github.com/Maka5000/Akeno/blob/master/img/sd/semoji.png')
-    uganda = bot.send_message(message.chat.id, 'https://github.com/Maka5000/Akeno/blob/master/img/sd/suganda.png')
-    jaba = bot.send_message(message.chat.id, 'https://github.com/Maka5000/Akeno/blob/master/img/sd/Jaba.jpg')
-    duck = bot.send_message(message.chat.id, 'https://github.com/Maka5000/Akeno/blob/master/img/sd/DDuck.gif')
+    pistol = 'https://github.com/Maka5000/Akeno/blob/master/img/sd/Pistol.jpg'
+    pistolyou = 'https://github.com/Maka5000/Akeno/blob/master/img/sd/Pistolyou.jpg'
+    emoji = 'https://github.com/Maka5000/Akeno/blob/master/img/sd/semoji.png'
+    uganda = 'https://github.com/Maka5000/Akeno/blob/master/img/sd/suganda.png'
+    jaba = 'https://github.com/Maka5000/Akeno/blob/master/img/sd/Jaba.jpg'
+    duck = 'https://github.com/Maka5000/Akeno/blob/master/img/sd/DDuck.gif'
     suicide = [pistol, pistolyou, emoji, uganda
                , jaba, duck]
     bot.send_photo(message.chat.id, random.choice(suicide))
