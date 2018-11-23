@@ -23,15 +23,15 @@ def find_at(msg):
 
 @bot.message_handler(commands = ['suicide'])
 def start(message):
-    pistol = 'https://github.com/Maka5000/Akeno/blob/master/img/sd/Pistol.jpg'
-    pistolyou = 'https://github.com/Maka5000/Akeno/blob/master/img/sd/Pistolyou.jpg'
-    emoji = 'https://github.com/Maka5000/Akeno/blob/master/img/sd/semoji.png'
-    uganda = 'https://github.com/Maka5000/Akeno/blob/master/img/sd/suganda.png'
-    jaba = 'https://github.com/Maka5000/Akeno/blob/master/img/sd/Jaba.jpg'
-    duck = 'https://github.com/Maka5000/Akeno/blob/master/img/sd/DDuck.gif'
+    pistol = open('img/sd/Pistol.jpg', 'rb')
+    pistolyou = open('img/sd/Pistolyou.jpg', 'rb')
+    emoji = open('img/sd/semoji.png', 'rb')
+    uganda = open('img/sd/suganda.png', 'rb')
+    jaba = open('img/sd/Jaba.jpg', 'rb')
+    duck = open('img/sd/DDuck.gif', 'rb')
     suicide = [pistol, pistolyou, emoji, uganda
                , jaba, duck]
-    bot.send_message(message.chat.id, random.choice(suicide))
+    bot.send_photo(message.chat.id, random.choice(suicide))
 
 
 #ФУНКЦИЯ ЛИНЕЙНОЙ КЛАВИАТУРЫ ФУНКЦИЯ ЛИНЕЙНОЙ КЛАВИАТУРЫ ФУНКЦИЯ ЛИНЕЙНОЙ КЛАВИАТУРЫ ФУНКЦИЯ ЛИНЕЙНОЙ КЛАВИАТУРЫ
@@ -419,9 +419,9 @@ def inline(call):
                               parse_mode='Markdown',
                               reply_markup=keyboard)
     if call.data == 'Срс 7':
-        bot.send_document(call.message.chat.id, open('docs\SSW7.docx', 'rb'))
+        bot.send_document(call.message.chat.id, open('docs/SSW7.docx', 'rb'))
     if call.data == 'Срс 6':
-        bot.send_document(call.message.chat.id, open('docs\SSW6.docx', 'rb'))
+        bot.send_document(call.message.chat.id, open('docs/SSW6.docx', 'rb'))
 
 
     #2-курс#2-курс#2-курс #2-курс #2-курс #2-курс #2-курс
@@ -448,7 +448,7 @@ def inline(call):
     if call.data == 'Пары':
         bot.send_photo(call.message.chat.id, open('img/Lessons.jpeg', 'rb'))
     if call.data == 'Экзамен':
-        bot.send_photo(call.message.chat.id, open('img/sd/DDuck.gif', 'rb'))
+        bot.send_photo(call.message.chat.id, open('img/Exam.jpg', 'rb'))
 
 if __name__ == '__main__':
     bot.polling(none_stop=True, interval=0)
