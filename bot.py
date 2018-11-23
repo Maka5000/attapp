@@ -1,17 +1,17 @@
 import telebot
 from telebot import types
+import random
 
-
-Token = '665567135:AAGdohyS5FcrQ5sVvQEMcQPqV6k8G-tbH-I'
+Token = ''
 bot = telebot.TeleBot(Token)
 
 @bot.message_handler(commands=['start'])
 def start(message):
     keyboard = types.InlineKeyboardMarkup()
     keyboard.add(*[types.InlineKeyboardButton(text=name, callback_data=name) for name in
-                 ['Расписание', 'Химия', 'Кальулятор',
+                 ['Расписание', 'Химия',
                   'Пара в данный момент','Поиск инсты(только в ЛС)',
-                  'Platonus']])
+                  'Platonus', 'Прочее']])
     msg = bot.send_message(message.chat.id, 'Привет, я бот созданный для учебы АТТ 17-01 \n'
                                             'Выберите нужную вам функцию ниже:', reply_markup=keyboard)
 #Для поиска инсты\Для поиска инсты\Для поиска инсты\Для поиска инсты\Для поиска инсты\Для поиска инсты
@@ -20,16 +20,30 @@ def find_at(msg):
         if '@' in text:
             return text
 
+@bot.message_handler(commands = ['suicide'])
+def start(message):
+    pistol = open('img\sd\Pistol.jpg', 'rb')
+    pistolyou = open('img\sd\Pistolyou.jpg', 'rb')
+    emoji = open('img\sd\semoji.png', 'rb')
+    uganda = open('img\sd\suganda.png', 'rb')
+    jaba = open('img\sd\Jaba.jpg', 'rb')
+    duck = open('img\sd\DDuck.gif', 'rb')
+    suicide = [pistol, pistolyou, emoji, uganda
+               , jaba, duck]
+    bot.send_photo(message.chat.id, random.choice(suicide))
+
 
 #ФУНКЦИЯ ЛИНЕЙНОЙ КЛАВИАТУРЫ ФУНКЦИЯ ЛИНЕЙНОЙ КЛАВИАТУРЫ ФУНКЦИЯ ЛИНЕЙНОЙ КЛАВИАТУРЫ ФУНКЦИЯ ЛИНЕЙНОЙ КЛАВИАТУРЫ
 @bot.callback_query_handler(func = lambda call: call.data)
 def inline(call):
     if call.data == 'Расписание':
         keyboard = types.InlineKeyboardMarkup()
-        keyboard.add(*[types.InlineKeyboardButton(text='Главная', callback_data='Главная')])
+        keyboard.add(*[types.InlineKeyboardButton(text=name, callback_data=name)for name in
+                       ['2-курс', '3-курс',
+                        'Главная']])
         bot.edit_message_text(chat_id=call.message.chat.id,
                               message_id=call.message.message_id,
-                              text='Скоро...',
+                              text='Выберите курс:',
                               parse_mode='Markdown',
                               reply_markup=keyboard)
     if call.data == 'Поиск инсты(только в ЛС)':
@@ -395,20 +409,45 @@ def inline(call):
     #Химия#Химия#Химия#Химия#Химия#Химия#Химия#Химия#Химия#Химия#Химия#Химия#Химия#Химия#Химия#Химия#Химия
     if call.data == 'Химия':
         keyboard = types.InlineKeyboardMarkup()
+        keyboard.add(*[types.InlineKeyboardButton(text = name, callback_data=name)for name in
+                       ['Срс 6', 'Срс 7']])
         keyboard.add(*[types.InlineKeyboardButton(text='Главная', callback_data='Главная')])
         bot.edit_message_text(chat_id=call.message.chat.id,
                               message_id=call.message.message_id,
-                              text='Скоро...',
+                              text='Химия СРС',
                               parse_mode='Markdown',
                               reply_markup=keyboard)
     if call.data == 'Срс 7':
+        bot.send_document(call.message.chat.id, open('docs\SSW7.docx', 'rb'))
+    if call.data == 'Срс 6':
+        bot.send_document(call.message.chat.id, open('docs\SSW6.docx', 'rb'))
+
+
+    #2-курс#2-курс#2-курс #2-курс #2-курс #2-курс #2-курс
+    if call.data == '2-курс':
         keyboard = types.InlineKeyboardMarkup()
-        keyboard.add(*[types.InlineKeyboardButton(text='Главная', callback_data='Главная')])
+        keyboard.add(*[types.InlineKeyboardButton(text = name, callback_data= name) for name in
+                       ['1 семестр', '2-семестр',]])
+        keyboard.add(*[types.InlineKeyboardButton(text = 'Назад', callback_data='Расписание')])
         bot.edit_message_text(chat_id=call.message.chat.id,
                               message_id=call.message.message_id,
-                              text='Скоро...',
+                              text='Выберите семестр:',
                               parse_mode='Markdown',
                               reply_markup=keyboard)
+    if call.data == '1 семестр':
+        keyboard = types.InlineKeyboardMarkup()
+        keyboard.add(*[types.InlineKeyboardButton(text=name, callback_data=name) for name in
+                       ['Пары', 'Экзамен']])
+        keyboard.add(*[types.InlineKeyboardButton(text = 'Назад', callback_data='2-курс')])
+        bot.edit_message_text(chat_id=call.message.chat.id,
+                              message_id=call.message.message_id,
+                              text='Выберите пожалуйста:',
+                              parse_mode='Markdown',
+                              reply_markup=keyboard)
+    if call.data == 'Пары':
+        bot.send_photo(call.message.chat.id, open('img\Lessons.jpeg', 'rb'))
+    if call.data == 'Экзамен':
+        bot.send_photo(call.message.chat.id, open('img\Exam.jpg', 'rb'))
 
 
 if __name__ == '__main__':
