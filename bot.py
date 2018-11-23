@@ -1,6 +1,7 @@
 import telebot
 from telebot import types
 import random
+import os
 
 Token = '665567135:AAGdohyS5FcrQ5sVvQEMcQPqV6k8G-tbH-I'
 bot = telebot.TeleBot(Token)
@@ -22,12 +23,12 @@ def find_at(msg):
 
 @bot.message_handler(commands = ['suicide'])
 def start(message):
-    pistol = open('img\sd\Pistol.jpg', 'rb')
-    pistolyou = open('img\sd\Pistolyou.jpg', 'rb')
-    emoji = open('img\sd\semoji.png', 'rb')
-    uganda = open('img\sd\suganda.png', 'rb')
-    jaba = open('img\sd\Jaba.jpg', 'rb')
-    duck = open('img\sd\DDuck.gif', 'rb')
+    pistol = bot.send_message(message.chat.id, 'https://github.com/Maka5000/Akeno/blob/master/img/sd/Pistol.jpg')
+    pistolyou = bot.send_message(message.chat.id, 'https://github.com/Maka5000/Akeno/blob/master/img/sd/Pistolyou.jpg')
+    emoji = bot.send_message(message.chat.id, 'https://github.com/Maka5000/Akeno/blob/master/img/sd/semoji.png')
+    uganda = bot.send_message(message.chat.id, 'https://github.com/Maka5000/Akeno/blob/master/img/sd/suganda.png')
+    jaba = bot.send_message(message.chat.id, 'https://github.com/Maka5000/Akeno/blob/master/img/sd/Jaba.jpg')
+    duck = bot.send_message(message.chat.id, 'https://github.com/Maka5000/Akeno/blob/master/img/sd/DDuck.gif')
     suicide = [pistol, pistolyou, emoji, uganda
                , jaba, duck]
     bot.send_photo(message.chat.id, random.choice(suicide))
@@ -445,10 +446,10 @@ def inline(call):
                               parse_mode='Markdown',
                               reply_markup=keyboard)
     if call.data == 'Пары':
-        bot.send_photo(call.message.chat.id, open('img\Lessons.jpeg', 'rb'))
+        bot.send_photo(call.message.chat.id, open('Akeno/img/Lessons.jpeg', 'rb'))
     if call.data == 'Экзамен':
-        bot.send_photo(call.message.chat.id, open('img\Exam.jpg', 'rb'))
-
+        bot.send_photo(call.message.chat.id, open('Akeno/img/Exams.jpg', 'rb'))
 
 if __name__ == '__main__':
     bot.polling(none_stop=True, interval=0)
+
