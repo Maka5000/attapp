@@ -10,9 +10,9 @@ bot = telebot.TeleBot(Token)
 def start(message):
     keyboard = types.InlineKeyboardMarkup()
     keyboard.add(*[types.InlineKeyboardButton(text=name, callback_data=name) for name in
-                 ['Расписание', 'Химия',
+                 ['Расписание', 'Химия', 'Прочее',
                   'Пара в данный момент','Поиск инсты(только в ЛС)',
-                  'Platonus', 'Прочее']])
+                  'Platonus',]])
     msg = bot.send_message(message.chat.id, 'Привет, я бот созданный для учебы АТТ 17-01 \n'
                                             'Выберите нужную вам функцию ниже:', reply_markup=keyboard)
 #Для поиска инсты\Для поиска инсты\Для поиска инсты\Для поиска инсты\Для поиска инсты\Для поиска инсты
@@ -20,6 +20,11 @@ def find_at(msg):
     for text in msg:
         if '@' in text:
             return text
+
+@bot.message_handler(commands=['8ball'])
+def eight_ball(message):
+    answ = ['Да','Нет','Возможно','Скорее нет, чем да','Скорее да, чем нет']
+    bot.reply_to(message.chat.id, random.choice(answ))
 
 @bot.message_handler(commands = ['suicide'])
 def start(message):
@@ -385,7 +390,7 @@ def inline(call):
     if call.data == 'Главная':
         keyboard = types.InlineKeyboardMarkup()
         keyboard.add(*[types.InlineKeyboardButton(text=name, callback_data=name) for name in
-                       ['Расписание', 'Химия', 'Кальулятор',
+                       ['Расписание', 'Химия', 'Прочее',
                         'Пара в данный момент', 'Поиск инсты(только в ЛС)',
                         'Platonus']])
         bot.edit_message_text(chat_id=call.message.chat.id,
@@ -449,6 +454,13 @@ def inline(call):
         bot.send_photo(call.message.chat.id, open('img/Lessons.jpeg', 'rb'))
     if call.data == 'Экзамен':
         bot.send_photo(call.message.chat.id, open('img/Exam.jpg', 'rb'))
+
+
+
+
+
+
+
 
 if __name__ == '__main__':
     bot.polling(none_stop=True, interval=0)
