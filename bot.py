@@ -38,6 +38,16 @@ def start(message):
                , jaba, duck]
     bot.send_photo(message.chat.id, random.choice(suicide))
 
+@bot.message_handler(commands = ['random'])
+def start(message):
+    da = 'Да'
+    net = 'Нет'
+    maybe = 'Возможно'
+    Sda4net = 'Скорее да, чем нет'
+    Snet4da = 'Скорее нет, чем да'
+    rand = [da, net, maybe, Sda4net, Snet4da]
+    bot.send_message(message.chat.id, random.choice(rand))
+
 
 #ФУНКЦИЯ ЛИНЕЙНОЙ КЛАВИАТУРЫ ФУНКЦИЯ ЛИНЕЙНОЙ КЛАВИАТУРЫ ФУНКЦИЯ ЛИНЕЙНОЙ КЛАВИАТУРЫ ФУНКЦИЯ ЛИНЕЙНОЙ КЛАВИАТУРЫ
 @bot.callback_query_handler(func = lambda call: call.data)
